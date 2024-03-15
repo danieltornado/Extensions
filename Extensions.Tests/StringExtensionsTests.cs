@@ -3,18 +3,28 @@
 namespace Extensions.Tests;
 
 [TestFixture]
-public class StringExtensionsTests
+public sealed class StringExtensionsTests
 {
     [Test]
-    public void IsNullOrEmpty_ShouldBe_Success()
+    [TestCase("123")]
+    [TestCase("  123  ")]
+    [TestCase("")]
+    [TestCase("   ")]
+    [TestCase(null)]
+    public void IsNullOrEmpty_ShouldBe_Success(string? testValue)
     {
-        string data1 = "123";
-        string? data2 = null;
-        string data3 = "";
-
-        data1.IsNullOrEmpty().Should().Be(string.IsNullOrEmpty(data1));
-        data2.IsNullOrEmpty().Should().Be(string.IsNullOrEmpty(data2));
-        data3.IsNullOrEmpty().Should().Be(string.IsNullOrEmpty(data3));
+        testValue.IsNullOrEmpty().Should().Be(string.IsNullOrEmpty(testValue));
+    }
+    
+    [Test]
+    [TestCase("123")]
+    [TestCase("  123  ")]
+    [TestCase("")]
+    [TestCase("   ")]
+    [TestCase(null)]
+    public void IsNullOrWhiteSpace_ShouldBe_Success(string? testValue)
+    {
+        testValue.IsNullOrWhiteSpace().Should().Be(string.IsNullOrWhiteSpace(testValue));
     }
 }
 

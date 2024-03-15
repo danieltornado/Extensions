@@ -2,43 +2,34 @@
 
 public static class EnumerableExtensions
 {
-    public static T[]? AsArray<T>(this IEnumerable<T>? source)
+    public static T[] AsArray<T>(this IEnumerable<T> source)
     {
-        if (source == null)
-            return null;
-
         return source as T[] ?? source.ToArray();
     }
 
-    public static async Task<T[]?> AsArrayAsync<T>(this Task<IEnumerable<T>?> task)
+    public static async Task<T[]> AsArrayAsync<T>(this Task<IEnumerable<T>> task)
     {
         var result = await task.ConfigureAwait(false);
         return result.AsArray();
     }
 
-    public static List<T>? AsList<T>(this IEnumerable<T>? source)
+    public static List<T> AsList<T>(this IEnumerable<T> source)
     {
-        if (source == null)
-            return null;
-
         return source as List<T> ?? source.ToList();
     }
 
-    public static async Task<List<T>?> AsListAsync<T>(this Task<IEnumerable<T>?> task)
+    public static async Task<List<T>> AsListAsync<T>(this Task<IEnumerable<T>> task)
     {
         var result = await task.ConfigureAwait(false);
         return result.AsList();
     }
 
-    public static IReadOnlyList<T>? AsReadOnlyList<T>(this IEnumerable<T>? source)
+    public static IReadOnlyList<T> AsReadOnlyList<T>(this IEnumerable<T> source)
     {
-        if (source == null)
-            return null;
-
         return source as IReadOnlyList<T> ?? source.ToList();
     }
 
-    public static async Task<IReadOnlyList<T>?> AsReadOnlyListAsync<T>(this Task<IEnumerable<T>?> task)
+    public static async Task<IReadOnlyList<T>> AsReadOnlyListAsync<T>(this Task<IEnumerable<T>> task)
     {
         var result = await task.ConfigureAwait(false);
         return result.AsReadOnlyList();
