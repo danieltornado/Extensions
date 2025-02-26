@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Extensions.Tests", "src\Com
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Extensions", "src\AspNetCore\AspNetCore.Extensions\AspNetCore.Extensions.csproj", "{9A78921D-1F85-4E80-BF15-6F2B4257C05A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Extensions.Validation", "src\AspNetCore\AspNetCore.Extensions.Validation\AspNetCore.Extensions.Validation.csproj", "{EB244ACA-DC9A-4FE1-8AF7-50D35B2845C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Extensions.Swagger", "src\AspNetCore\AspNetCore.Extensions.Swagger\AspNetCore.Extensions.Swagger.csproj", "{0B146142-3D2E-4F30-8333-8B7FCAE5B2B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,14 @@ Global
 		{9A78921D-1F85-4E80-BF15-6F2B4257C05A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A78921D-1F85-4E80-BF15-6F2B4257C05A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A78921D-1F85-4E80-BF15-6F2B4257C05A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB244ACA-DC9A-4FE1-8AF7-50D35B2845C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB244ACA-DC9A-4FE1-8AF7-50D35B2845C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB244ACA-DC9A-4FE1-8AF7-50D35B2845C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB244ACA-DC9A-4FE1-8AF7-50D35B2845C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B146142-3D2E-4F30-8333-8B7FCAE5B2B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B146142-3D2E-4F30-8333-8B7FCAE5B2B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B146142-3D2E-4F30-8333-8B7FCAE5B2B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B146142-3D2E-4F30-8333-8B7FCAE5B2B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,5 +54,7 @@ Global
 		{96C2F44A-B39B-4538-8982-41BD3F075421} = {C4521EDD-E5D8-4DB8-BD0C-510E40E10125}
 		{1C0AC1A4-2E0D-46C0-82CF-22B4594EEEBC} = {C4521EDD-E5D8-4DB8-BD0C-510E40E10125}
 		{9A78921D-1F85-4E80-BF15-6F2B4257C05A} = {81E639ED-4FB4-4131-A645-405FCA6A67F0}
+		{EB244ACA-DC9A-4FE1-8AF7-50D35B2845C4} = {81E639ED-4FB4-4131-A645-405FCA6A67F0}
+		{0B146142-3D2E-4F30-8333-8B7FCAE5B2B3} = {81E639ED-4FB4-4131-A645-405FCA6A67F0}
 	EndGlobalSection
 EndGlobal

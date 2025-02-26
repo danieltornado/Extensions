@@ -7,11 +7,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2024.3.0" />
+      <ProjectReference Include="..\AspNetCore.Extensions\AspNetCore.Extensions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.0" />
     </ItemGroup>
 
 </Project>
