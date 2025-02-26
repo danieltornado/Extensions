@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
 
-namespace Extensions.Tests;
+namespace Extensions.Tests.EnumerableTests;
 
 [TestFixture]
-public sealed class EnumerableExtensionsFlattenTests
+public sealed class FlattenTests
 {
     private class Graph
     {

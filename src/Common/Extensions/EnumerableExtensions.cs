@@ -1,38 +1,51 @@
-﻿namespace Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Extensions;
 
 public static class EnumerableExtensions
 {
+    /// <summary>
+    /// Tries to convert to <see cref="Array"/> or creates <see cref="Array"/>
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
     public static T[] AsArray<T>(this IEnumerable<T> source)
     {
         return source as T[] ?? source.ToArray();
     }
 
-    public static async Task<T[]> AsArrayAsync<T>(this Task<IEnumerable<T>> task)
-    {
-        var result = await task.ConfigureAwait(false);
-        return result.AsArray();
-    }
-
+    /// <summary>
+    /// Tries to convert to <see cref="List{T}"/> or creates <see cref="List{T}"/>
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
     public static List<T> AsList<T>(this IEnumerable<T> source)
     {
         return source as List<T> ?? source.ToList();
     }
 
-    public static async Task<List<T>> AsListAsync<T>(this Task<IEnumerable<T>> task)
-    {
-        var result = await task.ConfigureAwait(false);
-        return result.AsList();
-    }
-
+    /// <summary>
+    /// Tries to convert to <see cref="IReadOnlyList{T}"/> or creates <see cref="List{T}"/>
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
     public static IReadOnlyList<T> AsReadOnlyList<T>(this IEnumerable<T> source)
     {
         return source as IReadOnlyList<T> ?? source.ToList();
     }
 
-    public static async Task<IReadOnlyList<T>> AsReadOnlyListAsync<T>(this Task<IEnumerable<T>> task)
+    /// <summary>
+    /// Tries to convert to <see cref="IReadOnlyCollection{T}"/> or creates <see cref="List{T}"/>
+    /// </summary>
+    /// <param name="source"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static IReadOnlyCollection<T> AsReadOnlyCollection<T>(this IEnumerable<T> source)
     {
-        var result = await task.ConfigureAwait(false);
-        return result.AsReadOnlyList();
+        return source as IReadOnlyCollection<T> ?? source.ToList();
     }
 
     public static T? MinOrDefault<T>(this IEnumerable<T> source, T? defaultValue)
@@ -60,12 +73,12 @@ public static class EnumerableExtensions
         return source ?? Enumerable.Empty<T>();
     }
 
-    public static T[] EmptyIfNull<T>(this T[]? source)
+    public static T[] EmptyArrayIfNull<T>(this T[]? source)
     {
         return source ?? Array.Empty<T>();
     }
 
-    public static List<T> EmptyIfNull<T>(this List<T>? source)
+    public static List<T> EmptyListIfNull<T>(this List<T>? source)
     {
         return source ?? new List<T>(0);
     }
@@ -77,6 +90,7 @@ public static class EnumerableExtensions
     /// <param name="source"></param>
     /// <param name="getChildren"></param>
     /// <returns></returns>
+    [SuppressMessage("ReSharper", "GenericEnumeratorNotDisposed")]
     public static IEnumerable<T> Flatten<T>(this IEnumerable<T> source, Func<T, IEnumerable<T>?> getChildren)
     {
         var stack = new Stack<IEnumerator<T>>(2);
@@ -106,4 +120,3 @@ public static class EnumerableExtensions
         }
     }
 }
-

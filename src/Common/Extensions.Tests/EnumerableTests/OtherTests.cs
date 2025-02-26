@@ -1,9 +1,9 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 
-namespace Extensions.Tests;
+namespace Extensions.Tests.EnumerableTests;
 
 [TestFixture]
-public class EnumerableExtensionsTests
+public sealed class OtherTests
 {
     private class TestDataInt
     {
