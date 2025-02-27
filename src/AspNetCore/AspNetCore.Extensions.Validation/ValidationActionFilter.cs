@@ -1,6 +1,10 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using FluentValidation;
+using FluentValidation.Results;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -28,7 +32,7 @@ public class ValidationActionFilter : IActionFilter
                 var validationResult = validator.Validate(new ValidationContext<object>(context.ActionArguments[parameterDescriptor.Name]!));
                 if (validationResult.IsValid is false)
                 {
-                    context.Result = new JsonResult(validationResult.Errors);
+                    context.Result = CreateResult(context, validationResult);
                     return;
                 }
             }
@@ -42,4 +46,32 @@ public class ValidationActionFilter : IActionFilter
     }
 
     #endregion
+
+    private IActionResult CreateResult(ActionExecutingContext context, ValidationResult validationResult)
+    {
+        ProblemDetails problemDetails = new()
+        {
+            Status = StatusCodes.Status400BadRequest,
+            Title = "One or more validation errors occurred.",
+            Detail = "One or more validation errors occurred.",
+            Instance = $"{context.HttpContext.Request.Method} {context.HttpContext.Request.Path}",
+            Type = "validationException",
+        };
+
+        Activity? activity = context.HttpContext.Features.Get<IHttpActivityFeature>()?.Activity;
+        problemDetails.Extensions.TryAdd("traceId", activity?.Id);
+
+        problemDetails.Extensions.TryAdd("requestId", context.HttpContext.TraceIdentifier);
+
+        problemDetails.Extensions.TryAdd("errors",
+            validationResult
+                .Errors
+                .ToLookup(e => e.PropertyName)
+                .ToDictionary(e => e.Key, e => e.Select(x => x.ErrorMessage).ToList()));
+
+        return new JsonResult(problemDetails)
+        {
+            StatusCode = StatusCodes.Status400BadRequest
+        };
+    }
 }
