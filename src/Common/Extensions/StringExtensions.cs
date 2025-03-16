@@ -1,5 +1,8 @@
-﻿namespace Extensions;
+﻿using JetBrains.Annotations;
 
+namespace Extensions;
+
+[PublicAPI]
 public static class StringExtensions
 {
     public static bool IsNullOrEmpty(this string? value)

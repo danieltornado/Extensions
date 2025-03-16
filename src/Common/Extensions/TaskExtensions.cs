@@ -1,5 +1,8 @@
-﻿namespace Extensions;
+﻿using JetBrains.Annotations;
 
+namespace Extensions;
+
+[PublicAPI]
 public static class TaskExtensions
 {
     /// <summary>

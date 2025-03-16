@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
 
 namespace Extensions;
 
+[PublicAPI]
 public static class EnumerableExtensions
 {
     /// <summary>
@@ -71,16 +73,6 @@ public static class EnumerableExtensions
     public static IEnumerable<T> EmptyIfNull<T>(this IEnumerable<T>? source)
     {
         return source ?? Enumerable.Empty<T>();
-    }
-
-    public static T[] EmptyArrayIfNull<T>(this T[]? source)
-    {
-        return source ?? Array.Empty<T>();
-    }
-
-    public static List<T> EmptyListIfNull<T>(this List<T>? source)
-    {
-        return source ?? new List<T>(0);
     }
 
     /// <summary>
