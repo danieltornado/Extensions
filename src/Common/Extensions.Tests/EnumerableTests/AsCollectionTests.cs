@@ -76,7 +76,7 @@ public sealed class AsCollectionTests
         using (new AssertionScope())
         {
             enumerableActual.Should().NotBeNull();
-            enumerableActual.Should().NotBeSameAs(enumerable);
+            enumerableActual.Should().BeSameAs(enumerable);
             enumerableActual.Should().HaveCount(enumerable.Count());
 
             listActual.Should().NotBeNull();
@@ -103,7 +103,7 @@ public sealed class AsCollectionTests
         using (new AssertionScope())
         {
             enumerableActual.Should().NotBeNull();
-            enumerableActual.Should().NotBeSameAs(enumerable);
+            enumerableActual.Should().BeSameAs(enumerable);
             enumerableActual.Should().HaveCount(enumerable.Count());
 
             listActual.Should().NotBeNull();
