@@ -1,15 +1,15 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Xunit;
 
 namespace Extensions.Tests;
 
-[TestFixture]
 [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
 public sealed class TaskExtensionsTests
 {
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public async Task WhenNotNullCollection_AsArrayAsync_ShouldBeSuccessful(IEnumerable<string> enumerable, List<string> list, string[] array)
     {
         // arrange
@@ -35,8 +35,8 @@ public sealed class TaskExtensionsTests
         }
     }
 
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public async Task WhenNotNullCollection_AsListAsync_ShouldBeSuccessful(IEnumerable<string> enumerable, List<string> list, string[] array)
     {
         // arrange
@@ -62,8 +62,8 @@ public sealed class TaskExtensionsTests
         }
     }
 
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public async Task WhenNotNullCollection_AsReadOnlyListAsync_ShouldBeSuccessful(IEnumerable<string> enumerable, List<string> list, string[] array)
     {
         // arrange
@@ -89,8 +89,8 @@ public sealed class TaskExtensionsTests
         }
     }
 
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public async Task WhenNotNullCollection_AsReadOnlyCollectionAsync_ShouldBeSuccessful(IEnumerable<string> enumerable, List<string> list, string[] array)
     {
         // arrange
@@ -120,7 +120,7 @@ public sealed class TaskExtensionsTests
     {
     }
 
-    [Test]
+    [Fact]
     public async Task WhenTaskHasException_AsArrayAsync_ShouldThrowTestException()
     {
         // arrange
@@ -138,7 +138,7 @@ public sealed class TaskExtensionsTests
         await act.Should().ThrowAsync<TestException>();
     }
 
-    [Test]
+    [Fact]
     public async Task WhenTaskIsCancelled_AsArrayAsync_ShouldThrowTestException()
     {
         // arrange
@@ -154,10 +154,10 @@ public sealed class TaskExtensionsTests
         await act.Should().ThrowAsync<TaskCanceledException>();
     }
 
-    private static IEnumerable<object> GetDataSource()
+    public static IEnumerable<object[]> GetDataSource()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             Enumerable.Repeat(string.Empty, 3),
             new List<string>
             {
@@ -171,6 +171,6 @@ public sealed class TaskExtensionsTests
                 string.Empty,
                 string.Empty
             }
-        };
+        ];
     }
 }

@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
+using Xunit;
 
 namespace Extensions.Tests.EnumerableTests;
 
-[TestFixture]
 public sealed class FlattenTests
 {
     private class Graph
@@ -17,12 +17,7 @@ public sealed class FlattenTests
         public IEnumerable<Graph>? Items { get; set; }
     }
     
-    [SetUp]
-    public void Setup()
-    {
-    }
-
-    [Test]
+    [Fact]
     public void Flatten_ShouldBe_Success()
     {
         var data = new Graph(0)

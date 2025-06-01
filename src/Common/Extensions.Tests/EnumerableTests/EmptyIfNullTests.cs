@@ -1,14 +1,14 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
+using Xunit;
 
 namespace Extensions.Tests.EnumerableTests;
 
-[TestFixture]
 [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
 public sealed class EmptyIfNullTests
 {
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public void EmptyIfNull_ShouldBe_Success(IEnumerable<string>? testData)
     {
         testData.EmptyIfNull().Should().NotBeNull();
@@ -19,15 +19,15 @@ public sealed class EmptyIfNullTests
         }
     }
     
-    private static IEnumerable<object> GetDataSource()
+    public static IEnumerable<object?[]> GetDataSource()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             Enumerable.Repeat(string.Empty, 3)
-        };
+        ];
 
-        yield return new object[]
-        {
+        yield return
+        [
             new List<string>
             {
                 string.Empty,
@@ -35,20 +35,20 @@ public sealed class EmptyIfNullTests
                 string.Empty,
                 string.Empty
             }
-        };
+        ];
 
-        yield return new object[]
-        {
+        yield return
+        [
             new[]
             {
                 string.Empty,
                 string.Empty
             }
-        };
+        ];
 
-        yield return new object?[]
-        {
+        yield return
+        [
             null
-        };
+        ];
     }
 }

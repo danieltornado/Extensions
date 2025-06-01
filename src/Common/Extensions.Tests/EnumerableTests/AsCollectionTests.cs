@@ -1,15 +1,15 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Xunit;
 
 namespace Extensions.Tests.EnumerableTests;
 
-[TestFixture]
 [SuppressMessage("ReSharper", "PossibleMultipleEnumeration")]
 public sealed class AsCollectionTests
 {
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public void WhenNotNullCollection_AsArray_ShouldBeSuccessful(IEnumerable<string> enumerable, List<string> list, string[] array)
     {
         // arrange
@@ -35,8 +35,8 @@ public sealed class AsCollectionTests
         }
     }
 
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public void WhenNotNullCollection_AsList_ShouldBeSuccessful(IEnumerable<string> enumerable, List<string> list, string[] array)
     {
         // arrange
@@ -62,8 +62,8 @@ public sealed class AsCollectionTests
         }
     }
 
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public void WhenNotNullCollection_AsReadOnlyList_ShouldBeSuccessful(IEnumerable<string> enumerable, List<string> list, string[] array)
     {
         // arrange
@@ -89,8 +89,8 @@ public sealed class AsCollectionTests
         }
     }
 
-    [Test]
-    [TestCaseSource(nameof(GetDataSource))]
+    [Theory]
+    [MemberData(nameof(GetDataSource))]
     public void WhenNotNullCollection_AsReadOnlyCollection_ShouldBeSuccessful(IEnumerable<string> enumerable, List<string> list, string[] array)
     {
         // arrange
@@ -116,10 +116,10 @@ public sealed class AsCollectionTests
         }
     }
 
-    private static IEnumerable<object> GetDataSource()
+    public static IEnumerable<object[]> GetDataSource()
     {
-        yield return new object[]
-        {
+        yield return
+        [
             Enumerable.Repeat(string.Empty, 3),
             new List<string>
             {
@@ -133,6 +133,6 @@ public sealed class AsCollectionTests
                 string.Empty,
                 string.Empty
             }
-        };
+        ];
     }
 }

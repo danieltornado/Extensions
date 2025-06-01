@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
+using Xunit;
 
 namespace Extensions.Tests.EnumerableTests;
 
-[TestFixture]
 public sealed class OtherTests
 {
     private class TestDataInt
@@ -15,12 +15,7 @@ public sealed class OtherTests
         public int Value { get; set; }
     }
 
-    [SetUp]
-    public void Setup()
-    {
-    }
-
-    [Test]
+    [Fact]
     public void MinOrDefault_ShouldBe_Success()
     {
         var data1 = new[] { 3, 2, 1 };
@@ -34,7 +29,7 @@ public sealed class OtherTests
         data4.MinOrDefault(e => e.Value, 0).Should().Be(0);
     }
 
-    [Test]
+    [Fact]
     public void MaxOrDefault_ShouldBe_Success()
     {
         var data1 = new[] { 3, 2, 1 };
