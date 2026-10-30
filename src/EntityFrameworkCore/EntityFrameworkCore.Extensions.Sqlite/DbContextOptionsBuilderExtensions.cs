@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EntityFrameworkCore.Extensions.Sqlite;
 
+[PublicAPI]
 public static class DbContextOptionsBuilderExtensions
 {
     /// <summary>
     /// Sets using Sqlite in memory
     /// </summary>
     /// <param name="optionsBuilder"></param>
-    [PublicAPI]
     public static DbConnection UseSqliteInMemory(this DbContextOptionsBuilder optionsBuilder)
     {
         return optionsBuilder.UseSqliteInMemory(e => { });
@@ -22,7 +22,6 @@ public static class DbContextOptionsBuilderExtensions
     /// </summary>
     /// <param name="optionsBuilder"></param>
     /// <param name="configure"></param>
-    [PublicAPI]
     public static DbConnection UseSqliteInMemory(this DbContextOptionsBuilder optionsBuilder, Action<SqliteConnectionStringBuilder> configure)
     {
         SqliteConnectionStringBuilder connectionStringBuilder = new();
