@@ -5,13 +5,16 @@ namespace Extensions;
 [PublicAPI]
 public static class StringExtensions
 {
-    public static bool IsNullOrEmpty(this string? value)
+    extension(string? value)
     {
-        return string.IsNullOrEmpty(value);
-    }
+        public bool IsNullOrEmpty()
+        {
+            return string.IsNullOrEmpty(value);
+        }
 
-    public static bool IsNullOrWhiteSpace(this string? value)
-    {
-        return string.IsNullOrWhiteSpace(value);
+        public bool IsNullOrWhiteSpace()
+        {
+            return string.IsNullOrWhiteSpace(value);
+        }
     }
 }

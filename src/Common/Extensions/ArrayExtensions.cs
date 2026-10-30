@@ -5,8 +5,11 @@ namespace Extensions;
 [PublicAPI]
 public static class ArrayExtensions
 {
-    public static T[] EmptyArrayIfNull<T>(this T[]? source)
+    extension<T>(T[]? source)
     {
-        return source ?? Array.Empty<T>();
+        public T[] EmptyArrayIfNull()
+        {
+            return source ?? Array.Empty<T>();
+        }
     }
 }
